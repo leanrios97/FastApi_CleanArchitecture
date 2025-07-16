@@ -158,6 +158,7 @@ todo_app/
 │   │   ├── api/
 │   │   │   └── todo_controller.py
 │   │   └── dependencies.py
+|   ├── logs/
 │   ├── main.py
 │   └── config
 |
