@@ -81,6 +81,42 @@ El proyecto sigue los principios de **Arquitectura Limpia (Clean Architecture)**
 
 Esta estructura asegura que las dependencias fluyan hacia adentro (de la presentación al dominio), respetando el principio de inversión de dependencias y facilitando la sustitución de componentes (por ejemplo, cambiar SQLite por PostgreSQL).
 
+```
+todo_app/
+├── src/
+│   ├── domain/
+│   │   ├── entities/
+│   │   │   └── todo.py
+│   │   ├── repositories/
+│   │   │   └── todo_repository.py
+│   │   └── use_cases/
+│   │       ├── create_todo.py
+│   │       ├── get_todo.py
+│   │       ├── list_todos.py
+│   │       ├── update_todo.py
+│   │       └── delete_todo.py
+│   ├── infrastructure/
+│   │   ├── database/
+│   │   │   ├── __init__.py
+│   │   │   ├── database.py
+│   │   │   └── models/
+│   │   │       └── todo_model.py
+│   │   └── repositories/
+│   │       └── sql_todo_repository.py
+│   ├── presentation/
+│   │   ├── api/
+│   │   │   └── todo_controller.py
+│   │   └── dependencies.py
+|   ├── logs/
+│   ├── main.py
+│   └── config
+|
+|── tests/
+    |── test_todo_controller.py
+    └── test_todo_use_cases.py
+```
+
+
 ## Patrones de Diseño y Principios SOLID
 
 El proyecto implementa varios patrones de diseño y sigue los principios SOLID para garantizar un código robusto, mantenible y escalable.
@@ -131,41 +167,6 @@ El proyecto implementa varios patrones de diseño y sigue los principios SOLID p
 
   - Los casos de uso dependen de la interfaz `TodoRepository` (abstracción) en lugar de una implementación concreta (`SQLTodoRepository`).
   - Las dependencias se inyectan a través de `Depends` en FastAPI, lo que facilita la sustitución de componentes.
-
-```
-todo_app/
-├── src/
-│   ├── domain/
-│   │   ├── entities/
-│   │   │   └── todo.py
-│   │   ├── repositories/
-│   │   │   └── todo_repository.py
-│   │   └── use_cases/
-│   │       ├── create_todo.py
-│   │       ├── get_todo.py
-│   │       ├── list_todos.py
-│   │       ├── update_todo.py
-│   │       └── delete_todo.py
-│   ├── infrastructure/
-│   │   ├── database/
-│   │   │   ├── __init__.py
-│   │   │   ├── database.py
-│   │   │   └── models/
-│   │   │       └── todo_model.py
-│   │   └── repositories/
-│   │       └── sql_todo_repository.py
-│   ├── presentation/
-│   │   ├── api/
-│   │   │   └── todo_controller.py
-│   │   └── dependencies.py
-|   ├── logs/
-│   ├── main.py
-│   └── config
-|
-|── tests/
-    |── test_todo_controller.py
-    └── test_todo_use_cases.py
-```
 
 
 ## Endpoints de la API
